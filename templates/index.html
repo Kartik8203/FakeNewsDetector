@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #f1c40f;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            background-color: #222;
+            color: white;
+            border: 1px solid #f1c40f;
+            padding: 10px;
+        }
+        button {
+            background-color: #f1c40f;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .fake {
+            color: red;
+        }
+        .real {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fake News Detection</h1>
+    <form action="/predict" method="POST">
+        <textarea name="txt" placeholder="Enter news text here..."></textarea><br>
+        <button type="submit">Check News</button>
+    </form>
+    
+    {% if entered_text %}
+    <div class="result">
+        <p>Entered Text:</p>
+        <p>{{ entered_text }}</p>
+    </div>
+    {% endif %}
+    
+    {% if result %}
+    <div class="result {% if result == 'Fake News' %}fake{% else %}real{% endif %}">
+        <p>Prediction: <strong>{{ result }}</strong> (Confidence: {{ confidence }})</p>
+    </div>
+    {% endif %}
+    
+    {% if error %}
+    <p class="error">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
