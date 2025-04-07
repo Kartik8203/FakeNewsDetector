@@ -1,69 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fake News Detector</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        h1 {
-            color: #f1c40f;
-        }
-        textarea {
-            width: 80%;
-            height: 100px;
-            background-color: #222;
-            color: white;
-            border: 1px solid #f1c40f;
-            padding: 10px;
-        }
-        button {
-            background-color: #f1c40f;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .fake {
-            color: red;
-        }
-        .real {
-            color: green;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Fake News Detection</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Fake News Detection</h1>
-    <form action="/predict" method="POST">
-        <textarea name="txt" placeholder="Enter news text here..."></textarea><br>
-        <button type="submit">Check News</button>
+  <div class="container">
+    <h2>Fake News Detector</h2>
+    <form action="/predict" method="post">
+      <textarea name="news" placeholder="Paste news text here..." rows="8" cols="50">{{ news_text }}</textarea>
+      <br><br>
+      <input type="submit" value="Predict">
     </form>
-    
-    {% if entered_text %}
-    <div class="result">
-        <p>Entered Text:</p>
-        <p>{{ entered_text }}</p>
-    </div>
+    {% if prediction %}
+      <h3>Prediction: <span>{{ prediction }}</span></h3>
     {% endif %}
-    
-    {% if result %}
-    <div class="result {% if result == 'Fake News' %}fake{% else %}real{% endif %}">
-        <p>Prediction: <strong>{{ result }}</strong> (Confidence: {{ confidence }})</p>
-    </div>
-    {% endif %}
-    
-    {% if error %}
-    <p class="error">Error: {{ error }}</p>
-    {% endif %}
+  </div>
 </body>
 </html>
