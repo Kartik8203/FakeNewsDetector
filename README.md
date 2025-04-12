@@ -8,12 +8,8 @@ This project is a Fake News Detection system built using Flask and a machine lea
 ├── app/
 │   ├── app.py          # Flask application
 │
-├── dataset/            # Contains datasets used for training
-│
-├── fakenews/           # Additional scripts or processing modules
-│
-├── model/
-│   ├── model.pkl       # Trained machine learning model
+├── static/
+│   ├── style.css  
 │
 ├── notebooks/
 │   ├── FakenewsDetection.ipynb # Jupyter Notebook for EDA & Model Training
